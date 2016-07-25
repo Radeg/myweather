@@ -12,16 +12,17 @@ export class WeatherPage {
     return [[WeatherService], [NavController]];
   }
 
-  constructor(private weatherService: WeatherService, private navCtrl: NavController, private city: string, private state: string) {
+  constructor(private weatherService: WeatherService, private navCtrl: NavController, private city: string, private state: string, private weather: string) {
     this.weatherService = weatherService;
-    this.city = 'Boston';
-    this.state = 'MA';
+    this.city = 'Mlada Boleslav';
+    this.state = 'Czech Republic';
+    this.weather;
   }
 
   ngOnInit() {
     this.weatherService.getWeather(this.city, this.state)
       .subscribe(weather => {
-        console.log(weather);
+        this.weather = weather.current_observation;
       })
   }
 }
